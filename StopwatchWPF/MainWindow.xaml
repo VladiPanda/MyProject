@@ -1,0 +1,62 @@
+﻿<Window x:Class="StopwatchWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StopwatchWPF"
+        mc:Ignorable="d"
+        Title="Ultimate Stop Watch" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/1 (1).jpg"/>
+        </Grid.Background>
+        <Button x:Name="Start" Content="Start" Margin="10,324,548,32" FontFamily="Algerian" FontSize="20" FontWeight="Bold" Foreground="#FF1499CB" Click="Start_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/1.jpg"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="Stop" Content="Stop" Margin="281,324,281,32" RenderTransformOrigin="-0.42,1.847" FontWeight="Bold" FontFamily="Algerian" FontSize="20" Foreground="#FF2D99D6" Click="Stop_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/1.jpg"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="Reset" Content="Reset" Margin="552,324,10,32" Foreground="#FF2898D8" FontFamily="Algerian" FontSize="20" FontWeight="Bold" Click="Button_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/1.jpg"/>
+            </Button.Background>
+        </Button>
+        <TextBlock FontSize="50" Margin="281,71,281,287" RenderTransformOrigin="1.443,0.195" FontFamily="Algerian" Text="    Timer">
+            <TextBlock.Background>
+                <ImageBrush/>
+            </TextBlock.Background>
+            <TextBlock.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF8197F9" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Foreground></TextBlock>
+        <TextBlock x:Name="clocktxtblock" FontSize="48" Margin="293,152,269,177" FontFamily="Algerian">
+            <TextBlock.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF3276EC" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Foreground></TextBlock>
+        <ListBox x:Name="elapsedtimeitem" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="238" FontFamily="Algerian" FontSize="20">
+            <ListBox.BorderBrush>
+                <ImageBrush/>
+            </ListBox.BorderBrush>
+            <ListBox.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF5065E8" Offset="1"/>
+                </LinearGradientBrush>
+            </ListBox.Foreground>
+            <ListBox.Background>
+                <ImageBrush/>
+            </ListBox.Background>
+        </ListBox>
+
+
+    </Grid>
+</Window>
