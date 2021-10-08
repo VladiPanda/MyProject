@@ -25,15 +25,15 @@ namespace StopwatchWPF
     {
        
 
-        DispatcherTimer dt = new DispatcherTimer();
-        Stopwatch sw = new Stopwatch();
+        DispatcherTimer dt = new();
+        Stopwatch sw = new ();
         string currentTime = string.Empty;
 
         public MainWindow()
         {
             InitializeComponent();
-            dt.Tick += new EventHandler(dt_Tick);
-            dt.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            dt.Tick += dt_Tick;
+            dt.Interval = new TimeSpan(0, 0, 0, 0, 0);
             SoundPlayer player = new SoundPlayer();
             player.SoundLocation = "P:/Self improvment 2020/Programming/C#/C# Learning with Sifu Den/MP/MyProject/StopwatchWPF/Faunts-M4-Part-II.wav";
             player.Play();
@@ -53,16 +53,20 @@ namespace StopwatchWPF
         {
             sw.Start();
             dt.Start();
+            elapsedtimeitem.Items.Remove(currentTime);
+            Start.IsEnabled = false;
+            Stop.IsEnabled = true;
 
         }
 
         private void Stop_Click(object sender, RoutedEventArgs e)
         {
-            if (sw.IsRunning)
-            {
-                sw.Stop();
-            }
-            elapsedtimeitem.Items.Add(currentTime);
+           
+                dt.Stop();
+                elapsedtimeitem.Items.Add(currentTime);
+                Start.IsEnabled = true;
+                Stop.IsEnabled = false;
+                
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
