@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFCalculator"
         mc:Ignorable="d"
-        Title="WPFCalculator" Height="450" Width="300">
+         Title="MainWindow" Height="450" Width="300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -13,6 +13,7 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
@@ -22,7 +23,7 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        
+
         <!-- Buttons numbers -->
         <Button Grid.Row="3" Grid.Column="0" x:Name="Button_7" Click="Button_number_Click">7</Button>
         <Button Grid.Row="3" Grid.Column="1" x:Name="Button_8" Click="Button_number_Click">8</Button>
@@ -46,16 +47,16 @@
         <Button Grid.Row="5" Grid.Column="3" x:Name="Button_plus" Click="Button_operation_Click">+</Button>
         <Button Grid.Row="6" Grid.Column="3" x:Name="Button_equals" Click="Button_equals_Click">=</Button>
 
-        <Button Grid.Row="6" Grid.Column="2" x:Name="Button_comma">,</Button>
+        <Button Grid.Row="6" Grid.Column="2" x:Name="Button_comma" Click="Button_comma_Click">,</Button>
         <Button Grid.Row="6" Grid.Column="0" x:Name="Button_plusminus" Click="Button_plusminus_Click">+/-</Button>
-        
+
         <!-- Clear buttons-->
         <Button Grid.Row="2" Grid.Column="0" x:Name="Button_C" Click="Button_C_Click">C</Button>
         <Button Grid.Row="2" Grid.Column="1" x:Name="Button_CE" Click="Button_CE_Click">CE</Button>
         <Button Grid.Row="2" Grid.Column="2" x:Name="Button_backspace" Content ="&lt;=" Click="Button_backspace_Click"></Button>
-        
+
         <!-- TextBox -->
         <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" TextAlignment="Right" VerticalAlignment="Bottom" FontSize="40" x:Name="TextBox">0</TextBox>
-        
+
     </Grid>
 </Window>

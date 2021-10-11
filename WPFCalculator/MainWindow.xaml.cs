@@ -20,8 +20,8 @@ namespace WPFCalculator
     /// </summary>
     public partial class MainWindow : Window
     {
-        int firstNumberContainer = 0;
-        int secondNumberContainer = 0;
+        double firstNumberContainer = 0;
+        double secondNumberContainer = 0;
         string operation = "";
         
         public MainWindow()
@@ -32,18 +32,24 @@ namespace WPFCalculator
         private void Button_number_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            String str = button.Content.ToString();
-            int number = Int32.Parse(str);
+            String strNumber = button.Content.ToString();
 
-            if(operation == "")
+            if (TextBox.Text == "0")
             {
-                firstNumberContainer = firstNumberContainer * 10 + number;
-                TextBox.Text = firstNumberContainer.ToString();
+                TextBox.Text = strNumber;
             }
             else
             {
-                secondNumberContainer = secondNumberContainer * 10 + number;
-                TextBox.Text = secondNumberContainer.ToString();
+                TextBox.Text += strNumber;
+            }
+
+            if(operation == "")
+            {
+                firstNumberContainer = double.Parse(TextBox.Text);
+            }
+            else
+            {
+                secondNumberContainer = double.Parse(TextBox.Text);
             }
            
         }
@@ -52,12 +58,12 @@ namespace WPFCalculator
         {
             Button button = (Button)sender;
             operation = button.Content.ToString();
-            
+            TextBox.Text = "0";
         }
         
         private void Button_equals_Click(object sender, RoutedEventArgs e)
         {
-            int result = 0;
+            double result = 0;
 
             switch (operation)
             {
@@ -83,13 +89,14 @@ namespace WPFCalculator
                     result = (firstNumberContainer + secondNumberContainer) / 2;
                     break;
                 case "x^y":
-                    result = (int)Math.Pow(firstNumberContainer, secondNumberContainer);
+                    result = Math.Pow(firstNumberContainer, (int)secondNumberContainer);
                     break;
 
             }
             TextBox.Text = result.ToString();
             operation = "";
             firstNumberContainer = result;
+            secondNumberContainer = 0;
         }
 
         private void Button_C_Click(object sender, RoutedEventArgs e)
@@ -115,16 +122,38 @@ namespace WPFCalculator
 
         private void Button_backspace_Click(object sender, RoutedEventArgs e)
         {
+            
+
+            TextBox.Text = DeleteLastChar(TextBox.Text);
+
             if(operation == "")
             {
-                firstNumberContainer = firstNumberContainer / 10;
-                TextBox.Text = firstNumberContainer.ToString();
+                firstNumberContainer = double.Parse(TextBox.Text);
+
             }
             else
             {
-                secondNumberContainer = secondNumberContainer / 10;
-                TextBox.Text = secondNumberContainer.ToString();
+                secondNumberContainer = double.Parse(TextBox.Text);
             }
+        }
+
+        private string DeleteLastChar(string textNumber)
+        {
+            // convert the number to string and remove the last character
+
+            if (textNumber.Length == 1)
+            {
+                textNumber = "0";
+            }
+            else
+            {
+                textNumber = textNumber.Remove(textNumber.Length - 1, 1);
+                if (textNumber[textNumber.Length - 1] == ',')
+                {
+                    textNumber = textNumber.Remove(textNumber.Length - 1, 1);
+                }
+            }
+            return textNumber;
         }
 
         private void Button_plusminus_Click(object sender, RoutedEventArgs e)
@@ -139,6 +168,31 @@ namespace WPFCalculator
                 secondNumberContainer *= -1;
                 TextBox.Text = secondNumberContainer.ToString();
             }
+        }
+
+        private void Button_comma_Click(object sender, RoutedEventArgs e)
+        {
+            if(operation == "")
+            {
+                SetComma(firstNumberContainer);
+            }
+            else
+            {
+                SetComma(secondNumberContainer);
+            }
+        }
+
+        private void SetComma(double number)
+        {
+            if(TextBox.Text.Contains(','))
+            {
+                return;
+            }
+            else
+            {
+                TextBox.Text += ',';
+            }
+            
         }
     }
 }
