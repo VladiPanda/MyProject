@@ -20,7 +20,7 @@ namespace WPFCalculator
     /// </summary>
     public partial class MainWindow : Window
     {
-        int numberContainer = 0;
+        int firstNumberContainer = 0;
         int secondNumberContainer = 0;
         string operation = "";
         
@@ -29,40 +29,32 @@ namespace WPFCalculator
             InitializeComponent();
         }
 
-        private void Button_7_Click(object sender, RoutedEventArgs e)
+        private void Button_number_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            String str = button.Content.ToString();
+            int number = Int32.Parse(str);
+
             if(operation == "")
             {
-                numberContainer = numberContainer * 10 + 7;
-                TextBox.Text = numberContainer.ToString();
+                firstNumberContainer = firstNumberContainer * 10 + number;
+                TextBox.Text = firstNumberContainer.ToString();
             }
             else
             {
-                secondNumberContainer = secondNumberContainer * 10 + 7;
+                secondNumberContainer = secondNumberContainer * 10 + number;
                 TextBox.Text = secondNumberContainer.ToString();
             }
            
         }
 
-        private void Button_8_Click(object sender, RoutedEventArgs e)
+        private void Button_operation_Click(object sender, RoutedEventArgs e)
         {
-            if (operation == "")
-            {
-                numberContainer = numberContainer * 10 + 8;
-                TextBox.Text = numberContainer.ToString();
-            }
-            else
-            {
-                secondNumberContainer = secondNumberContainer * 10 + 8;
-                TextBox.Text = secondNumberContainer.ToString();
-            }
+            Button button = (Button)sender;
+            operation = button.Content.ToString();
+            
         }
-
-        private void Button_plus_Click(object sender, RoutedEventArgs e)
-        {
-            operation = "+";
-        }
-
+        
         private void Button_equals_Click(object sender, RoutedEventArgs e)
         {
             int result = 0;
@@ -70,14 +62,83 @@ namespace WPFCalculator
             switch (operation)
             {
                 case "+":
-                    result = numberContainer + secondNumberContainer;
+                    result = firstNumberContainer + secondNumberContainer;
+                    break;
+                case "-":
+                    result = firstNumberContainer - secondNumberContainer;
+                    break;
+                case "*":
+                    result = firstNumberContainer * secondNumberContainer;
+                    break;
+                case "/":
+                    result = firstNumberContainer / secondNumberContainer;
+                    break;
+                case "min":
+                    result = Math.Min(firstNumberContainer, secondNumberContainer);
+                    break;
+                case "max":
+                    result = Math.Max(firstNumberContainer, secondNumberContainer);
+                    break;
+                case "avg":
+                    result = (firstNumberContainer + secondNumberContainer) / 2;
+                    break;
+                case "x^y":
+                    result = (int)Math.Pow(firstNumberContainer, secondNumberContainer);
                     break;
 
             }
-
             TextBox.Text = result.ToString();
             operation = "";
-            numberContainer = result;
+            firstNumberContainer = result;
+        }
+
+        private void Button_C_Click(object sender, RoutedEventArgs e)
+        {
+            firstNumberContainer = 0;
+            secondNumberContainer = 0;
+            operation = "";
+            TextBox.Text = "0";
+        }
+
+        private void Button_CE_Click(object sender, RoutedEventArgs e)
+        {
+            if(operation == "")
+            {
+                firstNumberContainer = 0;
+            }
+            else
+            {
+                secondNumberContainer = 0;
+            }
+            TextBox.Text = "0";
+        }
+
+        private void Button_backspace_Click(object sender, RoutedEventArgs e)
+        {
+            if(operation == "")
+            {
+                firstNumberContainer = firstNumberContainer / 10;
+                TextBox.Text = firstNumberContainer.ToString();
+            }
+            else
+            {
+                secondNumberContainer = secondNumberContainer / 10;
+                TextBox.Text = secondNumberContainer.ToString();
+            }
+        }
+
+        private void Button_plusminus_Click(object sender, RoutedEventArgs e)
+        {
+            if (operation == "")
+            {
+                firstNumberContainer *= -1;
+                TextBox.Text = firstNumberContainer.ToString();
+            }
+            else
+            {
+                secondNumberContainer *= -1;
+                TextBox.Text = secondNumberContainer.ToString();
+            }
         }
     }
 }
