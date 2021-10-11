@@ -10,6 +10,9 @@
     <None Remove="1 %281%29.jpg" />
     <None Remove="1 %282%29.jpg" />
     <None Remove="1.jpg" />
+    <None Update="Faunts-M4-Part-II.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
