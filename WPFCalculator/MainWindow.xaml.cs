@@ -34,7 +34,7 @@ namespace WPFCalculator
             Button button = (Button)sender;
             String strNumber = button.Content.ToString();
 
-            if (TextBox.Text == "0")
+            if (TextBox.Text == "0") 
             {
                 TextBox.Text = strNumber;
             }
@@ -148,7 +148,7 @@ namespace WPFCalculator
             else
             {
                 textNumber = textNumber.Remove(textNumber.Length - 1, 1);
-                if (textNumber[textNumber.Length - 1] == ',')
+                if (textNumber[textNumber.Length - 1] == '.')
                 {
                     textNumber = textNumber.Remove(textNumber.Length - 1, 1);
                 }
@@ -184,13 +184,13 @@ namespace WPFCalculator
 
         private void SetComma(double number)
         {
-            if(TextBox.Text.Contains(','))
+            if(TextBox.Text.Contains('.'))
             {
                 return;
             }
             else
             {
-                TextBox.Text += ',';
+                TextBox.Text += '.';
             }
             
         }
