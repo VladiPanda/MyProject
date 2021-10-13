@@ -173,26 +173,16 @@ namespace WPFCalculator
         private void Button_comma_Click(object sender, RoutedEventArgs e)
         {
             if(operation == "")
-            {
-                SetComma(firstNumberContainer);
-            }
-            else
-            {
-                SetComma(secondNumberContainer);
-            }
+                SetComma(operation == "" ? firstNumberContainer : secondNumberContainer);
         }
 
         private void SetComma(double number)
         {
-            if(TextBox.Text.Contains('.'))
-            {
-                return;
-            }
-            else
-            {
+           
+            if (!TextBox.Text.Contains('.'))
+
                 TextBox.Text += '.';
-            }
-            
+
         }
     }
 }
