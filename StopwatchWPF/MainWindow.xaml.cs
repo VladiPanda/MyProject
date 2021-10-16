@@ -33,20 +33,18 @@ namespace StopwatchWPF
         {
             InitializeComponent();
             dt.Tick += dt_Tick;
-            dt.Interval = new TimeSpan(0, 0, 0, 0, 0);
-            SoundPlayer player = new SoundPlayer();
-            player.SoundLocation = "P:/Self improvment 2020/Programming/C#/C# Learning with Sifu Den/MP/MyProject/StopwatchWPF/Faunts-M4-Part-II.wav";
+            dt.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            SoundPlayer player = new SoundPlayer("Faunts-M4-Part-II.wav");
             player.Play();
         }
         void dt_Tick(object sender, EventArgs e)
         {
-            if (sw.IsRunning)
-            {
+            
                 TimeSpan ts = sw.Elapsed;
                 currentTime = String.Format("{0:00}:{1:00}:{2:00}",
                 ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
                 clocktxtblock.Text = currentTime;
-            }
+           
         }
 
         private void Start_Click(object sender, RoutedEventArgs e)
@@ -61,7 +59,7 @@ namespace StopwatchWPF
 
         private void Stop_Click(object sender, RoutedEventArgs e)
         {
-           
+                sw.Stop();
                 dt.Stop();
                 elapsedtimeitem.Items.Add(currentTime);
                 Start.IsEnabled = true;
